@@ -1,0 +1,324 @@
+/* ui.css */
+/* For all styling pertaining to menus and navigation elements. */
+
+/* ------------------ Tab Navigation ------------------ */
+.tabs ul {
+  display: flex;
+  align-items: center;         
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 3.5em;               
+  background-color: var(--color-header-bk);
+  border-bottom: 2px solid var(--color-accent4);
+}
+
+.tabs ul li {
+  height: 100%;           
+  display: flex;
+  align-items: center;
+}
+
+li.title{
+  background: var(--color-accent2);
+  text-align: center;
+  padding:0 1em;
+  color: white;
+}
+
+li.title h1{
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1em;
+  width:70%;
+  margin-left: -20px;
+}
+
+.title span {
+  font-size: .7em;
+  opacity: .75;
+  width:30%;
+}
+
+.title img {
+  height: 100px;
+  display: inline;
+  margin-top: -44px;
+}
+
+.tabs li {position: relative;}
+
+.theme li svg {color: var(--color-accent2)}
+
+.theme li:hover svg {color: var(--text-color)}
+
+.theme-toggle {color: var(--bg-color)!important;}
+
+li.theme {
+  background: var(--color-accent);
+  position: absolute;
+  right: 0;
+  height: 56px !important;
+}
+
+li.theme ul {border:none;}
+
+.portrait img {
+  height: 100%;
+  border: 2px solid var(--color-accent4);
+}
+
+/* ------------- Button Styles -------------*/
+.tabs li button {
+  background: none;
+  color: var(--text-color);
+  border: none;
+  padding: 0.6em 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  display: flex;
+  align-items: center;         /* ⬅ Vertical cente ring inside the button */
+  height: 100%;           /* Stretch the button too, if desired */
+  font-size: .9em;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 0.9rem;
+}
+
+.tab-btn:hover {color: var(--color-accent2);}
+
+.tab-btn.active {
+  color: var(--color-header-active);
+  border-bottom: 4px solid var(--color-accent2);
+  padding: 0.6em 1em .3em 1em;
+}
+
+.tab-btn:focus {outline: none;}
+
+.tab-section {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  scroll-margin-top: 6em; /* or whatever your fixed header height is */
+}
+
+.tab-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+td.section-header.edit-button {
+  text-align: right;
+  padding-top: 1em;
+}
+
+/* ------------- Button Bar Styles -------------*/
+.button-bar {
+  text-align: right;
+  padding-top: 1em;
+}
+
+.button-bar.hp-fix {padding:0;}
+
+.button-bar button {
+  padding: .5em;
+  font-size: .9rem;
+  background-color: var(--color-accent2);
+  border: 2px solid  var(--color-accent2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: var(--color-accent3);
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.button-bar svg {
+  vertical-align: top;
+}
+
+/* ------------- Edit Button Styles -------------*/
+h1.edit-button button,
+h2.edit-button button,
+span.edit-button button {
+  float: right;
+  border: none;
+  background: transparent;;
+}
+
+span.edit-button button {padding: .2em .5em;}
+
+h1.edit-button button,
+h2.edit-button button {margin: 0 -.3em}
+
+.edit-button button:hover {color: white;}
+
+.edit-button label {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-button .input-row{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.edit-button input[type="text"] {
+  flex: 1;
+  min-width: 0;
+}
+
+.section-header h1.edit-button {
+  background-color: var(--color-accent2);
+}
+
+.edit-button button {
+  padding: .25em .4em;
+  background-color: var(--color-accent2);
+  border: 2px solid var(--color-accent2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: var(--color-accent3);
+  border-radius: 5px;
+}
+
+button.add-button {
+    padding: .75em .8em;
+}
+
+nav.tabs .edit-button button {width:auto;} 
+
+nav.tabs .edit-button span {vertical-align: top;} 
+
+.edit-button span {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: -.2em 1.2em 0 0;
+  font-size: .725em;
+  }
+
+/* ------------- Dropdown Styles -------------*/
+.dropdown {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border: 2px solid var(--color-accent4);
+  min-width: 180px;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  gap: .25em;
+  border: none;
+  background: var(--color-accent4);
+}
+
+.dropdown li button {
+  display: block;
+  width: 100%;
+  padding: 0.5em 1em;
+  border: none;
+  background: none;
+  text-align: left;
+  color: var(--color-dropdown-text);
+  cursor: pointer;
+}
+
+.dropdown li button:hover {color: var(--color-accent);}
+
+.dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown .tab-btn.active {border:none;}
+
+/* ------------- Dropdown Styles -------------*/
+#jumpMenu,
+#jumpMenu.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#jumpMenu.hidden {
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* prevent interaction when hidden */
+}
+
+.jump-menu {
+  position: fixed;
+  top: 5rem;
+  left: 0;
+  background: var(--color-accent, #260d0e);
+  padding: 1em 0.5em;
+  z-index: 1000;
+  height: auto;
+  max-width: 200px;
+  transition: transform 0.3s ease, width 0.3s ease;
+  border-radius: 0 .7em .7em 0;
+  overflow: hidden;
+  }
+
+.jump-menu.collapsed {width: 50px;}
+
+.jump-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.jump-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.4em 0.8em;
+  color: var(--dark-textcolor);
+  text-decoration: none;
+  font-size: 0.9em;
+  border-radius: 4px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.jump-menu .icon,
+.menu-toggle {
+  font-size: 1.2em;
+  color: var(--color-accent3);
+}
+
+.jump-menu .label {
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.jump-menu.collapsed .label {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}

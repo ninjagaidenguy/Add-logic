@@ -1,0 +1,519 @@
+/* ------------------ Base Styles ------------------ */
+body {
+    font-family: var(--base-font);
+    background-color: #f1eae0;
+    color: #333;
+    margin: 0;
+  }
+  
+/* ------------------ Tab Navigation ------------------ */
+.tabs ul {
+  display: flex;
+  align-items: center;         /* ⬅ Center vertically */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 3.5em;               /* ⬅ Adjust height here */
+  background-color: var(--pf-cream);
+  border-bottom: 2px solid var(--pf-gold);
+}
+
+.tabs ul li {
+  height: 100%;           /* Make each <li> fill the height of the ul */
+  display: flex;
+  align-items: center;    /* Vertically center contents (e.g., the button) */
+}
+
+li.title {
+  background: var(--pf-red);
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  line-height: .7em;
+  padding:0 1em;
+}
+/* Tab Buttons */
+.tabs li button {
+  background: none;
+  color: #000000;
+  border: none;
+  padding: 0.6em 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+  display: flex;
+  align-items: center;         /* ⬅ Vertical cente ring inside the button */
+  height: 100%;           /* Stretch the button too, if desired */
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 0.9rem;
+}
+
+.tab-btn:hover {
+  color: var(--pf-red);
+}
+
+.tab-btn.active {
+  color: var(--color-accent);
+  border-bottom: 4px solid var(--pf-red);
+  padding: 0.6em 1em .3em 1em;
+}
+
+.tab-btn:focus {
+  outline: none;
+}
+
+.tab-section {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tab-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+li.note-break {
+  background: #ff00001a;
+  width: 100%;
+  padding: .5em;
+  justify-content: center;
+  font-weight: bold;
+  color: darkred;
+  font-size: .6em;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+/* ------------------ Grid System ------------------ */
+.g1  { flex: 0 0 calc(8.33% - 0.5rem); }
+.g2  { flex: 0 0 calc(16.67% - 0.5rem); }
+.g3  { flex: 0 0 calc(25% - 0.5rem); }
+.g4  { flex: 0 0 calc(33.33% - 0.5rem); }
+.g5  { flex: 0 0 calc(41.67% - 0.5rem); }
+.g6  { flex: 0 0 calc(50% - 0.5rem); }
+.g7  { flex: 0 0 calc(58.33% - 0.5rem); }
+.g8  { flex: 0 0 calc(66.67% - 0.5rem); }
+.g9  { flex: 0 0 calc(75% - 0.5rem); }
+.g10 { flex: 0 0 calc(83.33% - 0.5rem); }
+.g11 { flex: 0 0 calc(91.67% - 0.5rem); }
+.g12 { flex: 0 0 calc(100% - 0.5rem); }
+
+/* ------------------ Labels & Inputs ------------------ */
+
+ul.form li label, 
+li.table span {
+  gap: 0.5em;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+
+.form span {
+    display: block;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {      
+  background: transparent;
+  font-size: 1rem;
+  box-sizing: border-box;
+  line-height: 1.2;
+  font-family: var(--monospaced);
+  border: none; /* 1px solid var(--color-accent)86 */
+}
+
+select { 
+    padding: .2em 0.5em 0.5em 0.5em;
+}
+
+input[type="text"],
+input[type="number"],
+textarea { 
+    padding: 0.5em;
+}
+
+div.sheet-top ul.form input[type="text"],
+div.sheet-top ul.form input[type="number"],
+div.sheet-top ul.form select,
+div.sheet-top ul.form textarea {
+  border-bottom: 1px solid #000;
+  border-top:none;
+  border-left:none;
+  border-right:none;
+}
+.sheet-mid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-top: 0.4em;
+}
+
+input[disabled],
+select[disabled],
+textarea[disabled] 
+{
+  background: #0000000c;
+}
+
+input::placeholder {
+  color: var(--color-accent);
+  font-style: italic;  /* Optional: adds a nice hint look */
+}
+
+input::placeholder {
+  color: var(--color-accent)7c;         /* Gray-ish tone */
+  opacity: 0.7;        /* 0 to 1, lower is more transparent */
+  font-style: italic;  /* Optional: adds a nice hint look */
+}
+
+#table-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.table-row input {
+  width: 100%;
+  padding: 0.4em;
+}
+
+li.table {
+  flex-wrap: wrap;
+}
+
+li.table button {
+  background: var(--color-accent);
+  border: none;
+  padding: .5em;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+button.delete {
+  background: #a1000091!important;
+}
+
+button.add {
+  background: #40a10091!important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--pf-gold); /* Soft glow */
+  outline: none;                 /* Remove default browser outline */
+  background-color: #ffffff28;
+}
+input[type="checkbox"] {
+  width: 1em;
+  height: 1em;
+  transform: none; /* remove any scaling */
+  margin: 0.3em 0.5em 0 0; /* optional: align better with text */
+  vertical-align: middle;
+}
+
+/* ------------------ EDIT BUTTON ------------------ */
+.edit-button label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+
+.edit-button .input-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  align-items: center;
+}
+.edit-button input[type="text"] {
+    flex: 1;
+    min-width: 0;
+}
+
+.edit-button button {
+    flex: 0 0 auto;
+    padding: 0;
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.edit-button span {
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+/* ------------------ Form ------------------ */
+ul.form {
+  display: flex;
+  flex-wrap: wrap; /* allows items to wrap if they overflow */
+  gap: 0.5rem;      /* adjust as needed */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.form li,
+ul.form li * {
+  box-sizing: border-box;
+}
+/* ------------------ Fieldsets ------------------ */
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+legend {
+  font-size: 1.5rem;
+  padding: .3em 0 .3em .5em;
+  text-transform: uppercase;
+  background: var(--color-accent);
+  width: 99%;
+  color:white;
+  font-family: 'Fjalla One', sans-serif;
+}
+
+/* Optional Collapsible Fieldsets */
+.collapsible > legend {
+  cursor: pointer;
+}
+
+.collapsible[aria-expanded="false"] > *:not(legend) {
+  display: none;
+}
+/* ------------------ Tables ------------------ */
+.stat-block {
+}
+.stat-tables {
+  width: 100%;
+  table-layout: fixed; /* Important to prevent overflow from long content */
+}
+.stat-tables th, .stat-tables td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stat-tables input {
+  width: 100%;
+  box-sizing: border-box;
+}
+/* ------------------ Dark Mode ------------------ */
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #ddd;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  background: #2c2c2c;
+  color: #ddd;
+  border-color: #555;
+}
+
+body.dark-mode fieldset {
+  border-color: #444;
+}
+
+/* Dark Mode Tabs */
+body.dark-mode .tabs ul {
+  background-color: #2a2a2a;
+  border-bottom-color: #444;
+}
+
+body.dark-mode .tabs li button {
+  color: #ccc;
+}
+
+.theme-toggle {
+  margin-left: auto;
+  padding: 0.5em 1em;
+  font-size: 0.9rem;
+  border: none;
+  background-color: #ccc;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .theme-toggle {
+  color: #eee;
+}
+
+body.dark-mode div.sheet-top ul.form input[type="text"], 
+body.dark-mode div.sheet-top ul.formp input[type="number"], 
+body.dark-mode div.sheet-top ul.form select, 
+body.dark-mode div.sheet-top ul.form textarea {
+    border-bottom: 1px solid #646464;
+}
+li.theme {
+  background: var(--color-accent);
+  position: absolute;
+  right: 0;
+  height: 56px !important;
+}
+
+li.theme button {
+  color:white;
+}
+
+.theme-toggle:hover {
+  color: #bbb;
+}
+
+body.dark-mode input::placeholder {
+  color: #bbbbbb8c;
+  opacity: 0.6;
+}
+ 
+/* ------------------ Labels & Inputs ------------------ 
+.abilities-table {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0;
+    display: grid;
+    grid-template-columns: repeat(14, minmax(50px, auto)); /* 14 columns for labels + values 
+    gap: 0.25em;
+    align-items: center;
+  }
+  
+  .abilities-table .header {
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  .abilities-table li {
+    display: contents; /* allows <li> to work like a row 
+  }
+  
+  .abilities-table input {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  table.ability-table input[type="number"] {
+    width: 50px;
+}
+/* ------------------ Lookup Bar ------------------ *
+.check-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+
+.check-box label {
+  flex-direction: row!important;
+  align-items: center;
+  gap: 0.5em;
+}
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  margin-top: 0.25em;
+}
+
+.checkbox-group label {
+  display: inline !important;
+  gap: 0.5em;
+  font-size: 0.9rem;
+}
+.checkbox-group input[type="checkbox"] {
+  margin-top: -1px;
+}
+
+/* ------------------ Form Tables ------------------ *
+ul.form-table {
+  padding:0
+}
+.table div {
+    width: 100%;
+    margin: 1em 0;
+}
+.table div {
+  display: flex;
+}
+.table div span {
+  width: auto;
+  margin: .5em .5em .5em 0;
+}
+.table-row {
+  padding-bottom:.5em;
+}
+/* ------------------ Buttons ------------------ *
+.button-bar {
+  text-align: right;
+  padding: 1em 0;
+  margin:0!important;
+  display:inline-flex!important;
+}
+
+button.button1 {
+  background-color: #28a745;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: absolute;
+  z-index: 100;
+  top: 58px;
+  right: 0;
+  border-radius: 0 0 1.5em 1.5em;
+}
+
+.button-bar button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.button-bar button:active {
+  transform: scale(0.98);
+}
+
+.button-bar button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.4);
+}
+
+/* ------------------ Section Headers ------------------ *
+li.list-header {
+  width: 100% !important;
+  display: block !important;
+}
+
+.list-header h2 {
+  margin: 1em 0 0 0;
+  border-bottom: 2px solid var(--color-accent);
+  font-size: 1.2em;
+}

@@ -1,0 +1,19 @@
+@media (max-width: 768px) {
+  .g1, .g2, ..., .g12 {
+    grid-column: span 12; /* stack vertically on small screens */
+  }
+}
+
+@media (max-width: 1550px) {
+    .jump-menu {
+      transform: translateX(-100%);
+    }
+
+    .jump-menu.open {
+      transform: translateX(0);
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+}

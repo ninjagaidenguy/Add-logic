@@ -1,0 +1,47 @@
+:root {
+  --bg-color: #f1eae0;
+  --text-color: #000;
+  --dark-textcolor: #fff;
+  --form-color: #222;
+  --field-bk: #ffffffbf;
+  --color-accent: #260d0e;
+  --color-accent2: #4c0901;
+  --color-accent3: #e9cf9f;
+  --color-accent4: #c28531;
+  --color-header-bk: #e9cf9f;
+  --color-header-active: #4c0901;
+  --color-dropdown-txt: #000;
+  --base-font:"Open Sans", sans-serif;
+  --field-font: "Courier Prime", monospace;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #eee;
+  --dark-textcolor: #eee;
+  --form-color: #fff;
+  --field-bk: #282828;
+  --color-accent: #575757;
+  --color-accent2: #282828;
+  --color-accent3: #9e9d9d;
+  --color-accent4: #3f3f3f ;
+  --color-header-bk: #282828;
+  --color-header-active: #9e9d9d;
+  --color-dropdown-txt: #282828;
+}
+
+/* Mythweavers Theme */
+[data-theme="light"] {
+  --bg-color: #fcfcfc;
+  --text-color: #000;
+  --dark-textcolor: #fff;
+  --form-color: #222;
+  --field-bk: #0000000a;
+  --color-accent: #000;
+  --color-accent2: #000;
+  --color-accent3: #eee;
+  --color-accent4: #111;
+  --color-header-bk: #eee;
+  --color-header-active: #222;
+}

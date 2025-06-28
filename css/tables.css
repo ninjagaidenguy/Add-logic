@@ -1,0 +1,100 @@
+/* tables.css */
+/* For all styling pertaining to table elements. */
+
+/* ------------------ Tables ------------------ */
+.spell-list td .tab-btn {
+  background: transparent;
+  color: var(--color-accent2);
+  padding: 0 .2em
+}
+
+.spell-list td:last-child {
+  display: flex;
+  gap: 0;
+}
+
+td.edit-col .tab-btn {
+  background: transparent;
+  color: var(--color-accent2);
+  padding: 0 .2em
+}
+
+/* ------------------ Table Special Styles ------------------ */
+.gear td:first-child,
+.classes td:first-child {font-size: .9em;}
+
+.currency td:first-child,
+.gear td:first-child,
+.classes td:first-child {
+    text-align: right;
+}
+
+table.ability-scores td {width: calc(100% / 6);}
+
+table.armor-class td:first-child {width: 15%}
+table.armor-class td {width: calc((100% - 15%) / 11);}
+
+table.saving-throws td:first-child {width: 25%}
+table.saving-throws td {width: calc((100% - 25%) / 6);}
+
+table.weapon-editor td { width: calc((100% - 20% - 5%) / 13); } /* remaining columns */
+table.weapon-editor td:first-child { width: 20%; }
+table.weapon-editor td:nth-child(2) { width: 5%; }
+
+table.hp-adjust td { width: calc(100% / 3); } 
+table.xp-adjust td:first-child { width: 40%; } 
+table.xp-adjust td { width: 60%; } 
+
+table#feats td,
+div.weapon {vertical-align: top;}
+
+table.speed-editor td:nth-child(8),
+table.speed-editor td:nth-child(14) {width:15%}
+table.speed-editor td { width: calc((100% - 30%) / 13); } /* remaining columns */
+
+/* ------------------ Skill and Gear Lables ------------------ */
+td.skillCS {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: auto;
+  border-bottom: 1px solid var(--color-accent);
+  font-size: .9em;
+}
+
+td.skillCS input[type="checkbox"],
+td.skillCS strong {
+  display: inline-block;
+  width: auto;
+  flex: none;
+  min-width: revert;
+  margin-top: .5em;
+}
+
+td.skillCS strong {text-align: left;}
+
+td.skillsCS input[type="checkbox"] {display: inline;}
+
+.stat-tables input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+tr.disabled {opacity: .4;}
+
+th {
+  font-size: .7em;
+  text-transform: uppercase;
+  font-weight: 800;
+  vertical-align: bottom;
+  height: 28px;
+}
+table.weapon-editor th {height: auto!important}
+
+.stat-tables td select {min-width:70px;}
+
+.stat-tables td input,
+.stat-tables td select {
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding/borders don't overflow */
+}

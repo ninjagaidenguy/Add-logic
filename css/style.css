@@ -1,0 +1,228 @@
+/* ------------------ Base Styles ------------------ */
+html {scroll-behavior: smooth;}
+
+body {
+    font-family: var(--base-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+  }
+
+.hidden {display: none;}
+
+h2.g12.section-header,
+h1.g12.section-header {
+    width: auto;
+}
+li.note-break {
+  background: #ff00001a;
+  width: 100%;
+  padding: .5em;
+  justify-content: center;
+  font-weight: bold;
+  color: darkred;
+  font-size: .6em;
+  text-transform: uppercase;
+  letter-spacing: .05em;  
+}
+
+/* ------------------ Grid System ------------------ */
+.form-grid-row {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  gap: 0 .5rem;
+  margin-bottom: 1.625rem;
+}
+
+.g1  { grid-column: span 1; }
+.g2  { grid-column: span 2; }
+.g3  { grid-column: span 3; }
+.g4  { grid-column: span 4; }
+.g5  { grid-column: span 5; }
+.g6  { grid-column: span 6; }
+.g7  { grid-column: span 7; }
+.g8  { grid-column: span 8; }
+.g9  { grid-column: span 9; }
+.g10 { grid-column: span 10; }
+.g11 { grid-column: span 11; }
+.g12 { grid-column: span 12; }
+.g13 { grid-column: span 13; }
+.g14 { grid-column: span 14; }
+.g15 { grid-column: span 15; }
+.g16 { grid-column: span 16; }
+.g17 { grid-column: span 17; }
+.g18 { grid-column: span 18; }
+.g19 { grid-column: span 19; }
+.g20 { grid-column: span 20; }
+.g21 { grid-column: span 21; }
+.g22 { grid-column: span 22; }
+.g23 { grid-column: span 23; }
+.g24 { grid-column: span 24; }
+.form-grid-row.nested-row {margin-bottom: 2em;}
+
+.form-grid-row.nested-row:last-child {margin-bottom: 0;}
+
+.form-grid-row label span {
+  display: block;
+  font-size: .75rem;
+  font-weight: 800;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+}
+.labels-top label span {
+  margin-top: 1.25rem;
+}
+
+.form-grid-row li label,
+.g1, .g2, .g3, .g4, .g5, .g6, .g7, .g8, .g9, .g10, .g11, .g12, .g13, .g14, .g15, .g16, .g17, .g18, .g19, .g20, .g21, .g22, .g23, .g24, .g25, .g26, .g27, .g28,
+.ability-scores,
+.saving-throws, 
+.skills,
+.gear {
+  width: 100%;
+}
+
+.align-top {align-self: flex-start;}
+
+/* ------------------ Div Styles ------------------ */
+
+/* ------------------ Header Styles ------------------ */
+.spell-list h2 {
+  background: var(--color-accent);
+  color: white;
+  padding: .3em .5em;
+  margin: 0;
+  font-size: 1em;
+  text-transform: uppercase;
+  width: auto;
+}
+
+h2.header-bottom {margin-bottom: .5em;}
+
+h2.stat-block {
+  margin: .05em 0 -.02em .5em;
+  text-align: left;
+}
+
+h1.section-header {
+  background: var(--color-accent2);
+  color: white;
+  padding: .2em .6em;
+  font-size: 1.3em;
+  margin: 0;
+  text-transform: uppercase;
+  width: auto;
+}
+
+h1.section-header.edit-button button {
+  padding:.2em 0 0 0;
+}
+
+h2.section-header,
+h2.section-header2 {
+  background: var(--color-accent);
+  color: white;
+  padding: .3em .6em .3em .6em;
+  font-size: 1.1em;
+  width: auto;
+  margin:0;
+  text-align: left;
+}
+
+h2.section-header2 {
+  text-align:left;
+  margin-bottom:0;
+  margin-top:-2em;
+}
+
+h2.ability-header {
+  background: var(--bg-color);
+  color: var(--color-accent2);
+  font-size: 1.3em;
+  border-bottom: 2px solid var(--color-accent);
+  text-transform: uppercase;
+}
+
+#skills button {margin: 0 -.6em;}
+
+#attacks .row-label-min,
+#armor .row-label-min,
+#shield .row-label-min {
+    margin-top: 2.5em;
+}
+
+/* ------------------ Special Styles ------------------ */
+.blk {
+  background: var(--color-accent);
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: .25em 0
+}
+
+.align-top {margin-bottom:0}
+div.align-top span {
+    height: 35px;
+    display: inline-flex;
+    align-items: flex-end;
+}
+
+strong.blk {display: block;}
+
+.sec-label {
+  font-size: .8em;
+  padding: .55em 0
+}
+
+.long-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.num-row div,
+.center-text span {text-align: center;}
+
+.row-label-min {border-bottom: 18px solid var(--bg-color);}
+
+.row-label-min-top {border-top: 18px solid var(--bg-color);}
+
+span.visual-calc {
+  font-size: .9em;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
+.menu-toggle {
+  background: transparent;
+  color: var(--dark-textcolor);
+  border: none;
+  padding: 0.5em;
+  width: 100%;
+  text-align: left;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-bottom: 0.5em;
+}
+
+.no-margin {
+  margin-bottom:0;
+}
+
+hr {
+  border:2px solid var(--color-accent2);
+  margin-bottom: 0;
+}
+
+
+hr.color1 {
+  border:2px solid var(--color-accent);
+}
+
+hr.hidden-hr {
+    border: 2px solid var(--bg-color);
+    margin-bottom: 0;
+}
+
+td.edit-col {text-align: center;}
