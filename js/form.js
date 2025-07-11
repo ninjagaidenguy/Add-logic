@@ -1,24 +1,25 @@
+import { saveCharacterData } from './utils/getCharacterData.js';
 const uploadArea = document.getElementById('uploadArea');
 const imageInput = document.getElementById('imageInput');
 const imagePreview = document.getElementById('imagePreview');
 
 // Handle drag styling (optional)
-['dragenter', 'dragover'].forEach(event =>
-  uploadArea.addEventListener(event, e => {
+['dragenter', 'dragover'].forEach((event) =>
+  uploadArea.addEventListener(event, (e) => {
     e.preventDefault();
     uploadArea.classList.add('dragging');
   })
 );
 
-['dragleave', 'drop'].forEach(event =>
-  uploadArea.addEventListener(event, e => {
+['dragleave', 'drop'].forEach((event) =>
+  uploadArea.addEventListener(event, (e) => {
     e.preventDefault();
     uploadArea.classList.remove('dragging');
   })
 );
 
 // Handle dropped files
-uploadArea.addEventListener('drop', e => {
+uploadArea.addEventListener('drop', (e) => {
   const file = e.dataTransfer.files[0];
   if (file && file.type.startsWith('image/')) {
     imageInput.files = e.dataTransfer.files;
@@ -36,7 +37,7 @@ imageInput.addEventListener('change', () => {
 
 function previewImage(file) {
   const reader = new FileReader();
-  reader.onload = e => {
+  reader.onload = (e) => {
     imagePreview.src = e.target.result;
     imagePreview.style.display = 'block';
   };
@@ -44,16 +45,19 @@ function previewImage(file) {
 }
 
 function loadCharacter() {
-alert("Load Character clicked");
-// TODO: Add real logic
-}
-
-function saveCharacter() {
-  alert("Save Character clicked");
+  alert('Load Character clicked');
   // TODO: Add real logic
 }
 
+const saveCharacter = () => {
+  // alert('Save Character clicked');
+  // TODO: Add real logic
+  saveCharacterData();
+};
+
+window.saveCharacter = saveCharacter;
+
 function exportCharacter() {
-  alert("Export Character clicked");
+  alert('Export Character clicked');
   // TODO: Add real logic
 }

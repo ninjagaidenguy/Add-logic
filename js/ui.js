@@ -43,7 +43,9 @@ window.closeThemeDialog = closeThemeDialog;
 // Helper function for jump menu visibility
 function checkJumpMenuVisibility() {
   const jumpMenu = document.getElementById('jumpMenu');
-  const content = document.querySelector('fieldset, main, section, .main-content'); // adjust as needed
+  const content = document.querySelector(
+    'fieldset, main, section, .main-content'
+  ); // adjust as needed
   if (!jumpMenu || !content) return;
 
   const spaceLeft = content.getBoundingClientRect().left;
@@ -61,21 +63,28 @@ function initUI() {
 
   const jumpMenu = document.getElementById('jumpMenu'); // get once here
 
-  document.querySelectorAll('.tab-btn').forEach(btn => {
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const tabName = btn.dataset.tab;
 
       // Toggle active tab classes
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document
+        .querySelectorAll('.tab-btn')
+        .forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
 
       // Toggle active tab content
-      document.querySelectorAll('.tab-section').forEach(section => {
-        section.classList.toggle('active', section.dataset.tabContent === tabName);
+      document.querySelectorAll('.tab-section').forEach((section) => {
+        section.classList.toggle(
+          'active',
+          section.dataset.tabContent === tabName
+        );
       });
 
       // Scroll into view
-      const targetTab = document.querySelector(`[data-tab-content="${tabName}"]`);
+      const targetTab = document.querySelector(
+        `[data-tab-content="${tabName}"]`
+      );
       if (targetTab) targetTab.scrollIntoView({ behavior: 'smooth' });
 
       // Show/hide jump menu depending on tab
@@ -89,9 +98,11 @@ function initUI() {
     });
   });
 
-    document.getElementById('editClasses2')?.addEventListener('click', () => {
+  document.getElementById('editClasses2')?.addEventListener('click', () => {
     const targetTab = 'classes';
-    const tabButton = document.querySelector(`.tab-btn[data-tab="${targetTab}"]`);
+    const tabButton = document.querySelector(
+      `.tab-btn[data-tab="${targetTab}"]`
+    );
     if (tabButton) tabButton.click(); // trigger the normal tab logic
   });
 
@@ -136,37 +147,38 @@ function initUI() {
   checkJumpMenuVisibility();
   window.addEventListener('resize', checkJumpMenuVisibility);
 
-  // --- Dropdown Toggle + Custom Dropdown --- 
-console.log('Initializing Dropdown Toggle + Custom Dropdown');
-document.addEventListener('click', (event) => {
-  const toggleButton = event.target.closest('.dropdown-toggle');
-  const isToggle = !!toggleButton;
-  const openDropdowns = document.querySelectorAll('.dropdown.show');
+  // --- Dropdown Toggle + Custom Dropdown ---
+  console.log('Initializing Dropdown Toggle + Custom Dropdown');
+  document.addEventListener('click', (event) => {
+    const toggleButton = event.target.closest('.dropdown-toggle');
+    const isToggle = !!toggleButton;
+    const openDropdowns = document.querySelectorAll('.dropdown.show');
 
-  openDropdowns.forEach(drop => {
-    const clickedInside = drop.contains(event.target);
-    const isTogglingThis = isToggle && drop.id === toggleButton?.dataset.dropdown;
-    if (!isTogglingThis && !clickedInside) {
-      drop.classList.remove('show');
+    openDropdowns.forEach((drop) => {
+      const clickedInside = drop.contains(event.target);
+      const isTogglingThis =
+        isToggle && drop.id === toggleButton?.dataset.dropdown;
+      if (!isTogglingThis && !clickedInside) {
+        drop.classList.remove('show');
+      }
+    });
+
+    if (isToggle) {
+      const targetId = toggleButton.dataset.dropdown;
+      const targetMenu = document.getElementById(targetId);
+      if (targetMenu) targetMenu.classList.toggle('show');
+    }
+
+    // Close custom dropdown if clicked outside
+    const customDropdown = document.getElementById('customDropdown');
+    if (customDropdown && !customDropdown.contains(event.target)) {
+      customDropdown.classList.remove('open');
     }
   });
 
-  if (isToggle) {
-    const targetId = toggleButton.dataset.dropdown;
-    const targetMenu = document.getElementById(targetId);
-    if (targetMenu) targetMenu.classList.toggle('show');
-  }
-
-  // Close custom dropdown if clicked outside
-  const customDropdown = document.getElementById('customDropdown');
-  if (customDropdown && !customDropdown.contains(event.target)) {
-    customDropdown.classList.remove('open');
-  }
-});
-  
   // --- Expanding Textareas ---
   console.log('Initializing Expanding Textareas');
-  document.querySelectorAll('.expanding-textarea').forEach(textarea => {
+  document.querySelectorAll('.expanding-textarea').forEach((textarea) => {
     const adjustHeight = (el) => {
       el.style.height = '0em'; // Reset
       el.style.height = `${el.scrollHeight}px`; // Resize
@@ -175,42 +187,69 @@ document.addEventListener('click', (event) => {
     adjustHeight(textarea);
   });
 
-const popupOverlay = document.getElementById('popupOverlay');
+  const popupOverlay = document.getElementById('popupOverlay');
 
-// Open popup when any edit button is clicked
-document.querySelectorAll('.editPopupBtn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const targetId = btn.dataset.popupTarget;
-    const popup = document.getElementById(targetId);
+  // Open popup when any edit button is clicked
+  document.querySelectorAll('.editPopupBtn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.popupTarget;
+      const popup = document.getElementById(targetId);
 
-    popup.classList.remove('hidden');
-    popupOverlay.classList.remove('hidden');
+      popup.classList.remove('hidden');
+      popupOverlay.classList.remove('hidden');
 
-    // Store currently open popup for closing later
-    popupOverlay.dataset.activePopup = targetId;
+      // Store currently open popup for closing later
+      popupOverlay.dataset.activePopup = targetId;
+    });
   });
-});
 
-// Close popup when close button is clicked
-document.querySelectorAll('.closePopup').forEach(closeBtn => {
-  closeBtn.addEventListener('click', (e) => {
-    e.preventDefault(); // ✅ Stop default behavior (like jumping)
+  // Close popup when close button is clicked
+  document.querySelectorAll('.closePopup').forEach((closeBtn) => {
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // ✅ Stop default behavior (like jumping)
 
+      const popupId = popupOverlay.dataset.activePopup;
+      document.getElementById(popupId).classList.add('hidden');
+      popupOverlay.classList.add('hidden');
+    });
+  });
+
+  // Close popup when overlay is clicked
+  popupOverlay.addEventListener('click', () => {
     const popupId = popupOverlay.dataset.activePopup;
-    document.getElementById(popupId).classList.add('hidden');
-    popupOverlay.classList.add('hidden');
+    if (popupId) {
+      document.getElementById(popupId).classList.add('hidden');
+      popupOverlay.classList.add('hidden');
+    }
   });
-});
 
-// Close popup when overlay is clicked
-popupOverlay.addEventListener('click', () => {
-  const popupId = popupOverlay.dataset.activePopup;
-  if (popupId) {
-    document.getElementById(popupId).classList.add('hidden');
-    popupOverlay.classList.add('hidden');
-  }
-});
+  // Current XP Logic
+  const subtractXP = document.querySelector('#subtractXP');
+  const AddXP = document.querySelector('#addXP');
+  const xPAmount = document.querySelector('#xpAmount').value;
+  const xPCurrent = document.querySelector('[name="xpCurrent"]');
 
+  document.addEventListener('DOMContentLoaded', (e) => {
+    e.preventDefault(); // Prevent default form submission
+    // Add event listeners for XP buttons
+    subtractXP.addEventListener('click', () => {
+      const currentXP = parseInt(
+        document.querySelector('[name="xpCurrent"]').value,
+        10
+      );
+      const xpAmount = parseInt(document.querySelector('#xpAmount').value, 10);
+      const newXP = currentXP - xpAmount;
+      document.querySelector('[name="xpCurrent"]').value = newXP;
+    });
 
+    AddXP.addEventListener('click', () => {
+      const currentXP = parseInt(
+        document.querySelector('[name="xpCurrent"]').value,
+        10
+      );
+      const xpAmount = parseInt(document.querySelector('#xpAmount').value, 10);
+      const newXP = currentXP + xpAmount;
+      document.querySelector('[name="xpCurrent"]').value = newXP;
+    });
+  });
 }
-
