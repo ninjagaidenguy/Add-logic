@@ -1,17 +1,19 @@
-// import localforage from 'localforage';
-
 const getFieldValue = (selector) => {
-  const element = document.querySelector(selector)
-  return element ? element.value : ''
+  const element = document.querySelector(selector);
+  return element ? element.value : '';
+};
+
+function buildSection(mapping) {
+  const result = {};
+  for (const [key, selector] of Object.entries(mapping)) {
+    const value = getFieldValue(selector);
+    if (value !== '' && value !== null && value !== undefined) {
+      result[key] = value;
+    }
+  }
+  return result;
 }
 
-const buildSelection(mapping) {
-  const result = {}
-  for (const [key, selector] of Object.entries(mapping)) {
-    result[key] = getFieldValue(selector)
-  }
-  return result
-}
 const basicInfoMap = {
   name: '[name="characterName"]',
   player: '[name="player"]',
@@ -31,118 +33,145 @@ const basicInfoMap = {
   weight: '[name="weight"]',
   eyes: '[name="eyes"]',
   hair: '[name="hair"]',
+  speed: '[name="baseSpeed"]',
+  speedArmor: '[name="armorSpeed"]',
+  speedNotes: '[name="noteSpeed"]',
+  casterLevel: '[name="cl"]',
+  casterLevelTemp: '[name="clTemp"]',
+  spellResistance: '[name="sr"]'
 };
 
-const abilitiesMapUpdate = (type) {
-  const map = {
-    mod: `[name="${type}Mod"]`,
-    base: `[name="${type}Base"]`,
-    cost: `[name="${type}Cost"]`,
-    racial: `[name="${type}RBonus"]`,
-    bonus: `[name="${type}RBonusManual"]`,
-    levels: `[name="${type}Lvls"]`,
-    class: `[name="${type}Class"]`,
-    misc: `[name="${type}Misc"]`,
-    gear: `[name="${type}Gear"]`,
-    mythic: `[name="${type}Mythic"]`
-  } 
- return map
-}
-const abilitiesScores = {
-  str: buildSelection(abilitiesMapUpdate('str')),
-  dex: buildSelection(abilitiesMapUpdate('dex')),
-  con: buildSelection(abilitiesMapUpdate('con')),
-  int: buildSelection(abilitiesMapUpdate('int')),
-  wis: buildSelection(abilitiesMapUpdate('wis')),
-  cha: buildSelection(abilitiesMapUpdate('cha')),
-};
-const hitpoints = {
+const abilitiesMapUpdate = (type) => ({
+  mod: `[name="${type}Mod"]`,
+  base: `[name="${type}Base"]`,
+  cost: `[name="${type}Cost"]`,
+  racial: `[name="${type}RBonus"]`,
+  bonus: `[name="${type}RBonusManual"]`,
+  levels: `[name="${type}Lvls"]`,
+  class: `[name="${type}Class"]`,
+  misc: `[name="${type}Misc"]`,
+  gear: `[name="${type}Gear"]`,
+  mythic: `[name="${type}Mythic"]`
+});
+
+const hitPointsMap = {
   total: '[name="hpMax"]',
   curntHP: '[name="hpCurrent"]',
   nonLethal: '[name="nonlethal"]',
   hitDice: '[name="hd"]',
   damageReduction: '[name="dr"]',
+};
+
+const acMap = {
+  total: '[name="acTotal"]',
+  armor: '[name="acArmor"]',
+  shield: '[name="acShield"]',
+  dex: '[name="acDex"]',
+  size: '[name="acSize"]',
+  dodge: '[name="acDodge"]',
+  natural: '[name="acNatural"]',
+  deflection: '[name="acDeflect"]',
+  misc: '[name="acMisc"]',
+  temp: '[name="acTemp"]',
+};
+
+const touchMap = {
+  total: '[name="tTotal"]',
+  dex: '[name="tDex"]',
+  size: '[name="tSize"]',
+  dodge: '[name="tDodge"]',
+  deflection: '[name="tDeflect"]',
+  misc: '[name="tMisc"]',
+  temp: '[name="tTemp"]',
+};
+
+const flatFootedMap = {
+  total: '[name="ffTotal"]',
+  armor: '[name="ffArmor"]',
+  shield: '[name="ffShield"]',
+  size: '[name="ffSize"]',
+  natural: '[name="ffNatural"]',
+  deflection: '[name="ffDeflect"]',
+  misc: '[name="ffMisc"]',
+  temp: '[name="ffTemp"]',
+};
+
+const savesMapFunction = (saveType) => ({
+  total: `[name="${saveType}"]`,
+  base: `[name="${saveType}Base"]`,
+  ability: `[name="${saveType}Mod"]`,
+  mod: `[name="${saveType}ModAbility"]`,
+  magic: `[name="${saveType}Magic"]`,
+  temp: `[name="${saveType}Temp"]`,
+});
+const weapons = {
+
 }
-const armorMap = (type) {
-  const map = {
-    
-  }
-  return map
+const armorAndShields = {
+  
+}
+const feats = {
+
+}
+const classAbilities = {
+
+}
+const specialAbilities = {
+  
+}
+const skills = {
+  
+}
+const itemsAndGear = {
+  
+}
+const consumables = {
+  
+}
+const currency = {
+  
 }
 
 export const saveCharacterData = () => {
-  const characterData = {
-    basicInfo: buildSelection(basicInfoMap),
-    abilitiesScores: abilitiesScores,
-    hitPoints: buildSelection(hitPoints),
-    armorClass: {
-      AC: {
-        total: getValue('[name="hpMax"]'),
-        armor: getValue('[name="acArmor"]'),
-        sheild: getValue('[name="acShield"]'),
-        dex: getValue('[name="acDex"]'),
-        size: getValue('[name="acSize"]'),
-        dodge: getValue('[name="acDodge"]'),
-        natural: getValue('[name="acNatural"]'),
-        deflection: getValue('[name="acDeflect"]'),
-        misc: getValue('[name="acMisc"]'),
-        temp: getValue('[name="acTemp"]'),
-      },
-      touch: {
-        total: getValue('[name="tTouch"]'),
-        dex: getValue('[name="tDex"]'),
-        size: getValue('[name="tSize"]'),
-        dodge: getValue('[name="tDodge"]'),
-        deflection: getValue('[name="tDeflect"]'),
-        misc: getValue('[name="tMisc"]'),
-        temp: getValue('[name="tTemp"]'),
-      },
-      flatFooted: {
-        total: getValue('[name="ffMax"]'),
-        armor: getValue('[name="ffArmor"]'),
-        sheild: getValue('[name="ffShield"]'),
-        size: getValue('[name="ffSize"]'),
-        natural: getValue('[name="ffNatural"]'),
-        deflection: getValue('[name="ffDeflect"]'),
-        misc: getValue('[name="ffMisc"]'),
-        temp: getValue('[name="ffTemp"]'),
-      },
-    },
-    saveThrows: {
-      fortitude: {
-        total: getValue('[name="fort"]'),
-        base: getValue('[name="fortBase"]'),
-        ability: getValue('[name="fortMod"]'),
-        mod: document.querySelector('[name="fortModAbility"]').value,
-        magic: getValue('[name="fortMagic"]'),
-        temp: getValue('[name="fortTemp"]'),
-      },
-      reflex: {
-        total: getValue('[name="ref"]'),
-        base: getValue('[name="refBase"]'),
-        ability: getValue('[name="refMod"]'),
-        mod: document.querySelector('[name="refModAbility"]').value,
-        magic: getValue('[name="refMagic"]'),
-        temp: getValue('[name="refTemp"]'),
-      },
-      will: {
-        total: getValue('[name="will"]'),
-        base: getValue('[name="willBase"]'),
-        ability: getValue('[name="willMod"]'),
-        mod: document.querySelector('[name="willModAbility"]').value,
-        magic: getValue('[name="willMagic"]'),
-        temp: getValue('[name="willTemp"]'),
-      },
-    },
+  const abilitiesScores = {
+    str: buildSection(abilitiesMapUpdate('str')),
+    dex: buildSection(abilitiesMapUpdate('dex')),
+    con: buildSection(abilitiesMapUpdate('con')),
+    int: buildSection(abilitiesMapUpdate('int')),
+    wis: buildSection(abilitiesMapUpdate('wis')),
+    cha: buildSection(abilitiesMapUpdate('cha')),
   };
 
-  // localforage
-  //   .setItem('characterData', characterData)
-  //   .then(() => {
-  //     alert('Character saved locally!');
-  //   })
-  //   .catch((err) => {
-  //     alert('Error saving character: ' + err);
-  //   });
-  return console.log('Character data:', characterData);
+  const armorClass = {
+    AC: buildSection(acMap),
+    touch: buildSection(touchMap),
+    flatFooted: buildSection(flatFootedMap),
+  };
+
+  const saveThrows = {
+    fortitude: buildSection(savesMapFunction('fort')),
+    reflex: buildSection(savesMapFunction('ref')),
+    will: buildSection(savesMapFunction('will')),
+  };
+  const featsAndSpecialAbilities = {
+  
+  }
+
+  const characterData = {
+    basicInfo: buildSection(basicInfoMap),
+    abilitiesScores: abilitiesScores,
+    hitPoints: buildSection(hitPointsMap),
+    armorClass: armorClass,
+    saveThrows: saveThrows,
+    weapons,
+    armorAndShields,
+    featsAndSpecialAbilities,
+    skills,
+    itemsAndGear,
+    consumables,
+    currency
+  };
+
+  // localforage.setItem('characterData', characterData)...
+  console.log('Character data:', characterData);
 };
